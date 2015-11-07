@@ -1,87 +1,127 @@
+package sample;
+
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
-import java.util.ArrayList;
+import javafx.stage.Stage;
 
-// Keyboard events
-public class Example4K extends Application 
+import java.util.HashSet;
+
+public class Main extends Application
 {
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
         launch(args);
     }
 
+    static Scene mainScene;
+    static GraphicsContext graphicsContext;
+    static int WIDTH = 512;
+    static int HEIGHT = 256;
+
+    static Image left;
+    static Image leftGreen;
+
+    static Image right;
+    static Image rightGreen;
+
+    static HashSet<String> currentlyActiveKeys;
+
     @Override
-    public void start(Stage theStage) 
+    public void start(Stage mainStage)
     {
-        theStage.setTitle( "Keyboard Example" );
+        mainStage.setTitle("Event Handling");
 
         Group root = new Group();
-        Scene theScene = new Scene( root );
-        theStage.setScene( theScene );
+        mainScene = new Scene(root);
+        mainStage.setScene(mainScene);
 
-        Canvas canvas = new Canvas( 512 - 64, 256 );
-        root.getChildren().add( canvas );
+        Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        root.getChildren().add(canvas);
 
-        ArrayList<String> input = new ArrayList<String>();
+        prepareActionHandlers();
 
-        theScene.setOnKeyPressed(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    String code = e.getCode().toString();
+        graphicsContext = canvas.getGraphicsContext2D();
 
-                    // only add once... prevent duplicates
-                    if ( !input.contains(code) )
-                        input.add( code );
-                }
-            });
+        loadGraphics();
 
-        theScene.setOnKeyReleased(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    String code = e.getCode().toString();
-                    input.remove( code );
-                }
-            });
-
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        Image left = new Image( "left.png" );
-        Image leftG = new Image( "leftG.png" );
-
-        Image right = new Image( "right.png" );
-        Image rightG = new Image( "rightG.png" );
-
+        /**
+         * Main "game" loop
+         */
         new AnimationTimer()
         {
             public void handle(long currentNanoTime)
             {
-                // Clear the canvas
-                gc.clearRect(0, 0, 512,512);
-
-                if (input.contains("LEFT"))
-                    gc.drawImage( leftG, 64, 64 );
-                else
-                    gc.drawImage( left, 64, 64 );
-
-                if (input.contains("RIGHT"))
-                    gc.drawImage( rightG, 256, 64 );
-                else
-                    gc.drawImage( right, 256, 64 );
+                tickAndRender();
             }
         }.start();
 
-        theStage.show();
+        mainStage.show();
+    }
+
+    private static void prepareActionHandlers()
+    {
+        // use a set so duplicates are not possible
+        currentlyActiveKeys = new HashSet<String>();
+        mainScene.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent event)
+            {
+                currentlyActiveKeys.add(event.getCode().toString());
+            }
+        });
+        mainScene.setOnKeyReleased(new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent event)
+            {
+                currentlyActiveKeys.remove(event.getCode().toString());
+            }
+        });
+    }
+
+    private static void loadGraphics()
+    {
+        left = new Image(getResource("left.png"));
+        leftGreen = new Image(getResource("leftG.png"));
+
+        right = new Image(getResource("right.png"));
+        rightGreen = new Image(getResource("rightG.png"));
+    }
+
+    private static String getResource(String filename)
+    {
+        return Main.class.getResource(filename).toString();
+    }
+
+    private static void tickAndRender()
+    {
+        // clear canvas
+        graphicsContext.clearRect(0, 0, WIDTH, HEIGHT);
+
+        if (currentlyActiveKeys.contains("LEFT"))
+        {
+            graphicsContext.drawImage(leftGreen, 64 ,64);
+        }
+        else
+        {
+            graphicsContext.drawImage(left, 64 ,64);
+        }
+
+        if (currentlyActiveKeys.contains("RIGHT"))
+        {
+            graphicsContext.drawImage(rightGreen, 320, 64);
+        }
+        else
+        {
+            graphicsContext.drawImage(right, 320, 64);
+        }
     }
 }
