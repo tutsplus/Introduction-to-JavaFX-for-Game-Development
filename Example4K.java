@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -13,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.HashSet;
 
-public class Main extends Application
+public class Example4K extends Application
 {
     public static void main(String[] args)
     {
@@ -98,7 +96,7 @@ public class Main extends Application
 
     private static String getResource(String filename)
     {
-        return Main.class.getResource(filename).toString();
+        return Example4K.class.getResource(filename).toString();
     }
 
     private static void tickAndRender()
