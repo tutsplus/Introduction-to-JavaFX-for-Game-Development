@@ -1,0 +1,6 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.tutsplus</groupId>
+    <artifactId>introduction-to-javafx-for-gamedevs</artifactId>
+    <version>1</version>
+</project>
