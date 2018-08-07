@@ -1,3 +1,5 @@
+package org.tutsplus.example4;
+
 import javafx.geometry.Point2D;
 
 public class Circle

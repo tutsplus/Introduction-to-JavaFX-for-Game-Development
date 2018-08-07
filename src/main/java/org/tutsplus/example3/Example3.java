@@ -1,3 +1,5 @@
+package org.tutsplus.example3;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -28,11 +30,11 @@ public class Example3 extends Application
         Canvas canvas = new Canvas( 512, 512 );
         root.getChildren().add( canvas );
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        final GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        Image earth = new Image( "earth.png" );
-        Image sun   = new Image( "sun.png" );
-        Image space = new Image( "space.png" );
+        final Image earth = new Image( "earth.png" );
+        final Image sun   = new Image( "sun.png" );
+        final Image space = new Image( "space.png" );
 
         final long startNanoTime = System.nanoTime();
 

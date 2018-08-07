@@ -1,3 +1,5 @@
+package org.tutsplus.example4;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -49,9 +51,6 @@ public class Example4K extends Application
 
         loadGraphics();
 
-        /**
-         * Main "game" loop
-         */
         new AnimationTimer()
         {
             public void handle(long currentNanoTime)
@@ -66,7 +65,7 @@ public class Example4K extends Application
     private static void prepareActionHandlers()
     {
         // use a set so duplicates are not possible
-        currentlyActiveKeys = new HashSet<String>();
+        currentlyActiveKeys = new HashSet<>();
         mainScene.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
             @Override

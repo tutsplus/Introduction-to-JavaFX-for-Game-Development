@@ -1,3 +1,5 @@
+package org.tutsplus.example3;
+
 import javafx.scene.image.Image;
 
 public class AnimatedImage

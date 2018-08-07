@@ -1,3 +1,5 @@
+package org.tutsplus.example1;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 

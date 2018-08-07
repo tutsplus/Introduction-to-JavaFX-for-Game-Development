@@ -1,3 +1,5 @@
+package org.tutsplus.common;
+
 public class IntValue
 {
     public int value;
