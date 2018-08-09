@@ -10,7 +10,9 @@ import javafx.scene.image.Image;
 
 import javafx.animation.AnimationTimer;
 
-// Animation of Earth rotating around the sun. (Hello, world!)
+import java.util.stream.IntStream;
+
+// Global of Earth rotating around the sun. (Hello, world!)
 public class Example3AI extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -24,7 +26,7 @@ public class Example3AI extends Application {
         Scene theScene = new Scene(root);
         theStage.setScene(theScene);
 
-        Canvas canvas = new Canvas(512, 512);
+        Canvas canvas = Global.createCanvas();
         root.getChildren().add(canvas);
 
         final GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -35,8 +37,8 @@ public class Example3AI extends Application {
 
         final AnimatedImage ufo = new AnimatedImage();
         Image[] imageArray = new Image[6];
-        for (int i = 0; i < 6; i++)
-            imageArray[i] = new Image("ufo_" + i + ".png");
+        IntStream.range(0, imageArray.length - 1).forEach(i ->
+                imageArray[i] = new Image("ufo_" + i + ".png"));
         ufo.frames = imageArray;
         ufo.duration = 0.100;
 
@@ -46,8 +48,9 @@ public class Example3AI extends Application {
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
 
-                double x = 232 + 128 * Math.cos(t);
-                double y = 232 + 128 * Math.sin(t);
+                int sunImageSize = 128;
+                double x = canvas.getWidth() / 2 + sunImageSize * Math.cos(t);
+                double y = canvas.getHeight() / 2 + sunImageSize * Math.sin(t);
 
                 gc.drawImage(space, 0, 0);
                 gc.drawImage(earth, x, y);

@@ -14,10 +14,12 @@ import javafx.util.Duration;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
+import static org.tutsplus.example3.Global.sunImageSize;
+
 // An alternative implementation of Example 3,
 //    using the Timeline, KeyFrame, and Duration classes.
 
-// Animation of Earth rotating around the sun. (Hello, world!)
+// Global of Earth rotating around the sun. (Hello, world!)
 public class Example3T extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -31,7 +33,7 @@ public class Example3T extends Application {
         Scene theScene = new Scene(root);
         theStage.setScene(theScene);
 
-        Canvas canvas = new Canvas(512, 512);
+        Canvas canvas = Global.createCanvas();
         root.getChildren().add(canvas);
 
         final GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -50,8 +52,8 @@ public class Example3T extends Application {
                 ae -> {
                     double t = (System.currentTimeMillis() - timeStart) / 1000.0;
 
-                    double x = 232 + 128 * Math.cos(t);
-                    double y = 232 + 128 * Math.sin(t);
+                    double x = canvas.getWidth() / 2 + sunImageSize * Math.cos(t);
+                    double y = canvas.getHeight() / 2 + sunImageSize * Math.sin(t);
 
                     // Clear the canvas
                     gc.clearRect(0, 0, 512, 512);
