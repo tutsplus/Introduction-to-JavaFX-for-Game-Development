@@ -103,11 +103,11 @@ public class Example5 extends Application {
 
                 // collision detection
 
-                Iterator<Sprite> moneybagIter = moneybagList.iterator();
-                while (moneybagIter.hasNext()) {
-                    Sprite moneybag = moneybagIter.next();
+                Iterator<Sprite> moneybagIterator = moneybagList.iterator();
+                while (moneybagIterator.hasNext()) {
+                    Sprite moneybag = moneybagIterator.next();
                     if (briefcase.intersects(moneybag)) {
-                        moneybagIter.remove();
+                        moneybagIterator.remove();
                         score.value++;
                     }
                 }

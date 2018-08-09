@@ -1,6 +1,6 @@
 package org.tutsplus.example5;
 
-public class LongValue
+class LongValue
 {
     public long value;
     

@@ -20,18 +20,18 @@ public class Example4K extends Application
         launch(args);
     }
 
-    static Scene mainScene;
-    static GraphicsContext graphicsContext;
-    static int WIDTH = 512;
-    static int HEIGHT = 256;
+    private static Scene mainScene;
+    private static GraphicsContext graphicsContext;
+    private static final int WIDTH = 512;
+    private static final int HEIGHT = 256;
 
-    static Image left;
-    static Image leftGreen;
+    private static Image left;
+    private static Image leftGreen;
 
-    static Image right;
-    static Image rightGreen;
+    private static Image right;
+    private static Image rightGreen;
 
-    static HashSet<String> currentlyActiveKeys;
+    private static HashSet<String> currentlyActiveKeys;
 
     @Override
     public void start(Stage mainStage)
