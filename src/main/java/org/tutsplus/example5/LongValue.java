@@ -1,4 +1,6 @@
-public class LongValue
+package org.tutsplus.example5;
+
+class LongValue
 {
     public long value;
     

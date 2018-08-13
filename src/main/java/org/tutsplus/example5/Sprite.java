@@ -1,8 +1,10 @@
+package org.tutsplus.example5;
+
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Rectangle2D;
 
-public class Sprite
+class Sprite
 {
     private Image image;
     private double positionX;

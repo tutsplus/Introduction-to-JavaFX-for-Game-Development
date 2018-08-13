@@ -1,3 +1,5 @@
+package org.tutsplus.example4;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -11,7 +13,7 @@ import javafx.scene.image.Image;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import java.util.ArrayList;
+import org.tutsplus.common.IntValue;
 
 // Keyboard events
 public class Example4M extends Application 
@@ -35,8 +37,8 @@ public class Example4M extends Application
 
         root.getChildren().add( canvas );
 
-        Circle targetData = new Circle(100,100,32);
-        IntValue points = new IntValue(0);
+        final Circle targetData = new Circle(100,100,32);
+        final IntValue points = new IntValue(0);
 
         theScene.setOnMouseClicked(
             new EventHandler<MouseEvent>()
@@ -55,14 +57,14 @@ public class Example4M extends Application
                 }
             });
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        final GraphicsContext gc = canvas.getGraphicsContext2D();
 
         Font theFont = Font.font( "Helvetica", FontWeight.BOLD, 24 );
         gc.setFont( theFont );
         gc.setStroke( Color.BLACK );
         gc.setLineWidth(1);
 
-        Image bullseye = new Image( "bullseye.png" );
+        final Image bullseye = new Image( "bullseye.png" );
 
         new AnimationTimer()
         {

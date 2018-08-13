@@ -1,6 +1,8 @@
+package org.tutsplus.example3;
+
 import javafx.scene.image.Image;
 
-public class AnimatedImage
+class AnimatedImage
 {
     // assumes animation loops,
     //  each image displays for equal time

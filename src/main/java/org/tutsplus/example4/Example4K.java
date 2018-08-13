@@ -1,3 +1,5 @@
+package org.tutsplus.example4;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -18,18 +20,18 @@ public class Example4K extends Application
         launch(args);
     }
 
-    static Scene mainScene;
-    static GraphicsContext graphicsContext;
-    static int WIDTH = 512;
-    static int HEIGHT = 256;
+    private static Scene mainScene;
+    private static GraphicsContext graphicsContext;
+    private static final int WIDTH = 512;
+    private static final int HEIGHT = 256;
 
-    static Image left;
-    static Image leftGreen;
+    private static Image left;
+    private static Image leftGreen;
 
-    static Image right;
-    static Image rightGreen;
+    private static Image right;
+    private static Image rightGreen;
 
-    static HashSet<String> currentlyActiveKeys;
+    private static HashSet<String> currentlyActiveKeys;
 
     @Override
     public void start(Stage mainStage)
@@ -49,9 +51,6 @@ public class Example4K extends Application
 
         loadGraphics();
 
-        /**
-         * Main "game" loop
-         */
         new AnimationTimer()
         {
             public void handle(long currentNanoTime)
@@ -66,7 +65,7 @@ public class Example4K extends Application
     private static void prepareActionHandlers()
     {
         // use a set so duplicates are not possible
-        currentlyActiveKeys = new HashSet<String>();
+        currentlyActiveKeys = new HashSet<>();
         mainScene.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
             @Override

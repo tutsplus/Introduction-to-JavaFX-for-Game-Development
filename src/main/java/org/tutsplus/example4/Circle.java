@@ -1,6 +1,8 @@
+package org.tutsplus.example4;
+
 import javafx.geometry.Point2D;
 
-public class Circle
+class Circle
 {
     private Point2D center;
     private double  radius;
