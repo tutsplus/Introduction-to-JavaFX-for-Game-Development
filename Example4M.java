@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.shape.Circle;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -11,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import java.util.ArrayList;
 
 // Keyboard events
 public class Example4M extends Application 
@@ -43,11 +43,12 @@ public class Example4M extends Application
             {
                 public void handle(MouseEvent e)
                 {
-                    if ( targetData.containsPoint( e.getX(), e.getY() ) )
+                    if ( targetData.contains( e.getX(), e.getY() ) )
                     {
                         double x = 50 + 400 * Math.random(); 
                         double y = 50 + 400 * Math.random();
-                        targetData.setCenter(x,y);
+                        targetData.setCenterX(x);
+                        targetData.setCenterY(y);
                         points.value++;
                     }
                     else
@@ -73,8 +74,8 @@ public class Example4M extends Application
                 gc.fillRect(0,0, 512,512);
 
                 gc.drawImage( bullseye, 
-                    targetData.getX() - targetData.getRadius(),
-                    targetData.getY() - targetData.getRadius() );
+                    targetData.getCenterX() - targetData.getRadius(),
+                    targetData.getCenterY() - targetData.getRadius() );
 
                 gc.setFill( Color.BLUE );
 
